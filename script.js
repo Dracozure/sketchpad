@@ -1,4 +1,4 @@
-function createGrid(boxQuantity, addID = null, addClasses = "") {
+function createGrid(boxQuantity, addID = null, addClasses = "null") {
     const gridContainer = document.createElement('div');
     const classArr = addClasses.split(" ");
 
@@ -12,17 +12,30 @@ function createGrid(boxQuantity, addID = null, addClasses = "") {
         gridContainer.setAttribute('id', addID);
     }
 
-    if (classArr.length !== 0) {
+    if (classArr[0] !== 'null') {
         classArr.map((className) => {
             gridContainer.classList.add(className);
         });
+    }
+
+    return gridContainer;
+}
+
+function populateGrid(grid) {
+    const gridRowCount = window.getComputedStyle(grid).getPropertyValue("grid-template-rows").split(" ").length;
+    const gridRowMultiplyColumn = gridRowCount ** 2;
+
+    for (let i = 0; i < gridRowMultiplyColumn; i++) {
+        const gridElement = document.createElement('div');
+
+        grid.appendChild(gridElement);
     }
 }
 
 const body = document.querySelector('body');
 
-const myGRid = createGrid(2, "grid-container", "grid container grid-container");
+const myGrid = createGrid(2, 'grid');
 
-myGRid.textContent = "hello";
+body.appendChild(myGrid);
 
-body.appendChild(myGRid);
+populateGrid(myGrid);
