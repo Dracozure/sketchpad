@@ -1,13 +1,3 @@
-const body = document.querySelector('body');
-
-const myGrid = createGrid(16, 16);
-
-populateGrid(myGrid);
-
-myGrid.classList.add('grid-container');
-
-body.appendChild(myGrid);
-
 function createGrid(rowCount, columnCount, elementID = null, elementClasses = 'grid') {
     const gridContainer = document.createElement('div');
     const classArr = elementClasses.split(' ');
@@ -30,14 +20,13 @@ function createGrid(rowCount, columnCount, elementID = null, elementClasses = 'g
         gridContainer.classList.add(elementClasses);
     }
 
+    populateGrid(gridContainer, rowCount, columnCount);
+
     return gridContainer;
 }
 
-function populateGrid(grid, gridElementClasses = 'grid-element') {
-    //getPropertyValue(...).length results in one less than the actual length of row/column
-    const gridColumnsCount = grid.style.getPropertyValue('grid-template-columns').length + 1;
-    const gridRowsCount = grid.style.getPropertyValue('grid-template-rows').length + 1;
-    const gridArea = gridRowsCount * gridColumnsCount;
+function populateGrid(grid, rowCount, columnCount, gridElementClasses = 'grid-element') {
+    const gridArea = rowCount * columnCount;
     const classArr = gridElementClasses.split(' ');
 
     for (let i = 0; i < gridArea; i++) {
