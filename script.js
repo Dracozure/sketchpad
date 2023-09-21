@@ -1,14 +1,14 @@
-function createGrid(boxQuantity, addID = null, addClasses = "null") {
+function createGrid(rowCount, columnCount, elementID = null, elementClasses = 'null') {
     const gridContainer = document.createElement('div');
-    const classArr = addClasses.split(" ");
+    const classArr = elementClasses.split(' ');
 
     gridContainer.style.display = 'grid';
     gridContainer.style.setProperty('grid-template-columns'
-    , `repeat(${boxQuantity}, 1fr)`);
+    , `repeat(${columnCount}, 1fr)`);
     gridContainer.style.setProperty('grid-template-rows'
-    , `repeat(${boxQuantity}, 1fr)`);
+    , `repeat(${rowCount}, 1fr)`);
 
-    if (addID !== null) {
+    if (elementID !== null) {
         gridContainer.setAttribute('id', addID);
     }
 
@@ -21,21 +21,21 @@ function createGrid(boxQuantity, addID = null, addClasses = "null") {
     return gridContainer;
 }
 
-function populateGrid(grid) {
-    const gridRowCount = window.getComputedStyle(grid).getPropertyValue("grid-template-rows").split(" ").length;
-    const gridRowMultiplyColumn = gridRowCount ** 2;
+function populateGrid(grid, elementClasses = 'grid-element') {
+    const gridRowCount = window.getComputedStyle(grid).getPropertyValue('grid-template-rows').split(' ').length;
+    const gridColumnCount = window.getComputedStyle(grid).getPropertyValue('grid-template-columns').split(' ').length;
+    const gridArea = gridRowCount ** gridColumnCount;
+    const classArr = elementClasses.split(' ');
 
-    for (let i = 0; i < gridRowMultiplyColumn; i++) {
+    for (let i = 0; i < gridArea; i++) {
         const gridElement = document.createElement('div');
+
+        if (classArr[0] !== 'grid-element') {
+            classArr.map((className) => {
+                gridElement.classList.add(className);
+            });
+        }
 
         grid.appendChild(gridElement);
     }
 }
-
-const body = document.querySelector('body');
-
-const myGrid = createGrid(2, 'grid');
-
-body.appendChild(myGrid);
-
-populateGrid(myGrid);
