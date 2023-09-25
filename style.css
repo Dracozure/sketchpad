@@ -7,7 +7,15 @@ body {
     margin: 0;
 }
 
-.grid-container {
+body {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid {
     background-color: blue;
     width: 660px;
     height: 660px;

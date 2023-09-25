@@ -1,3 +1,13 @@
+let mouseDown = 0;
+
+window.onmouseup = () => {
+    mouseDown = 0;
+}
+
+window.onmousedown = () => {
+    ++mouseDown;
+}
+
 function createGrid(rowCount, columnCount, elementID = null, elementClasses = 'grid') {
     const gridContainer = document.createElement('div');
     const classArr = elementClasses.split(' ');
@@ -25,21 +35,44 @@ function createGrid(rowCount, columnCount, elementID = null, elementClasses = 'g
     return gridContainer;
 }
 
-function populateGrid(grid, rowCount, columnCount, gridElementClasses = 'grid-element') {
+function populateGrid(grid, rowCount, columnCount) {
     const gridArea = rowCount * columnCount;
-    const classArr = gridElementClasses.split(' ');
 
     for (let i = 0; i < gridArea; i++) {
         const gridElement = document.createElement('div');
 
-        if (classArr[0] !== 'grid-element') {
-            classArr.map((className) => {
-                gridElement.classList.add(className);
-            });
-        } else {
-            gridElement.classList.add(gridElementClasses);
-        }
-
+        gridElement.setAttribute('id', 'grid-element');
         grid.appendChild(gridElement);
     }
 }
+
+function getPickedColor() {
+    return document.getElementById('colorpicker').value;
+}
+
+function toggleColor() {
+    this.style.backgroundColor = getPickedColor();
+}
+
+function toggleColorByHover() {
+    if (mouseDown) {
+        this.style.backgroundColor = getPickedColor();
+    }
+}
+
+const body = document.querySelector('body');
+
+const grid = createGrid(5,4);
+
+const arr = Array.from(grid.children);
+
+arr.forEach((element) => {
+    element.addEventListener('dragstart', event => {
+        event.preventDefault();
+    });
+    element.addEventListener('mousedown', toggleColor);
+    element.addEventListener('mouseover', toggleColorByHover);
+});
+
+body.appendChild(grid);
+
