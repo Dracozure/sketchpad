@@ -1,12 +1,12 @@
-let mouseDown = 0;
+const body = document.querySelector('body');
 
-window.onmouseup = () => {
-    mouseDown = 0;
-}
+const grid = createGrid(16, 16);
 
-window.onmousedown = () => {
-    ++mouseDown;
-}
+const arr = Array.from(grid.children);
+
+addArrEventListeners(arr);
+
+body.appendChild(grid);
 
 function createGrid(rowCount, columnCount, elementID = null, elementClasses = 'grid') {
     const gridContainer = document.createElement('div');
@@ -50,7 +50,14 @@ function getPickedColor() {
     return document.getElementById('colorpicker').value;
 }
 
+let mouseDown = 0;
+
+window.onmouseup = () => {
+    mouseDown = 0;
+}
+
 function toggleColor() {
+    mouseDown++;
     this.style.backgroundColor = getPickedColor();
 }
 
@@ -60,19 +67,13 @@ function toggleColorByHover() {
     }
 }
 
-const body = document.querySelector('body');
-
-const grid = createGrid(5,4);
-
-const arr = Array.from(grid.children);
-
-arr.forEach((element) => {
-    element.addEventListener('dragstart', event => {
-        event.preventDefault();
+function addArrEventListeners(array) {
+    array.forEach((element) => {
+        element.addEventListener('dragstart', event => {
+            event.preventDefault();
+        });
+        element.addEventListener('mousedown', toggleColor);
+        element.addEventListener('mouseover', toggleColorByHover);
     });
-    element.addEventListener('mousedown', toggleColor);
-    element.addEventListener('mouseover', toggleColorByHover);
-});
-
-body.appendChild(grid);
+}
 
