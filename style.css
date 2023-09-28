@@ -18,10 +18,24 @@ body {
 .grid {
     width: 660px;
     height: 660px;
-    border: 20px black solid;
+    border: 1.5rem black solid;
 }
 
 .grid > * {
     border-left: 1px rgb(156, 156, 156) solid;
     border-bottom: 1px rgb(156, 156, 156) solid;
+}
+
+.settings.panel {
+    display: flex;
+    row-gap: 1.5rem;
+    padding: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mode {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
 }

@@ -1,12 +1,13 @@
 const body = document.querySelector('body');
-
 const grid = createGrid(16, 16);
-
 const arr = Array.from(grid.children);
 
 addArrEventListeners(arr);
-
 body.appendChild(grid);
+
+function toggleNewMode(newMode) {
+    const currentMode = 0;
+}
 
 function createGrid(rowCount, columnCount, elementID = null, elementClasses = 'grid') {
     const gridContainer = document.createElement('div');
