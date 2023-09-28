@@ -47,9 +47,7 @@ function populateGrid(grid, rowCount, columnCount) {
     }
 }
 
-function getPickedColor() {
-    return document.getElementById('colorpicker').value;
-}
+/* Tracking mouse activity over grid board */
 
 let mouseDown = 0;
 
@@ -77,4 +75,41 @@ function addArrEventListeners(array) {
         element.addEventListener('mouseover', toggleColorByHover);
     });
 }
+
+function getPickedColor() {
+    return document.getElementById('colorpicker').value;
+}
+
+/* Grid size display */
+const settingsPanel = document.querySelector('.settings.panel');
+const slider = document.querySelector('.slider');
+const gridSizeDisplay = document.createElement('h2');
+
+gridSizeDisplay.textContent = `Grid Size: ${slider.value} x ${slider.value}`;
+
+slider.addEventListener('input', () => {
+    updateGridSize();
+});
+slider.addEventListener('change', () => {
+    updateGrid();
+});
+
+settingsPanel.appendChild(gridSizeDisplay);
+
+function updateGridSize() {
+    gridSizeDisplay.textContent = `Grid Size: ${slider.value} x ${slider.value}`; 
+}
+
+function updateGrid() {
+    const newGrid = createGrid(slider.value, slider.value);
+    const currentGrid = document.querySelector('.grid');
+    const arr = Array.from(newGrid.children);
+
+    addArrEventListeners(arr);
+    currentGrid.replaceWith(newGrid);
+}
+
+
+
+
 
