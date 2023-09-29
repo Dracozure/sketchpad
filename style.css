@@ -23,7 +23,8 @@ body {
 
 .title {
     font-size: 5rem;
-    padding: 5rem;
+    padding: 50px;
+    margin: 25px;
 }
 
 .grid {
