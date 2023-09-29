@@ -1,9 +1,9 @@
-const body = document.querySelector('body');
+const contentContainer = document.querySelector('.content.container');
 const grid = createGrid(16, 16);
 const gridElementsArr = Array.from(grid.children);
 
 addArrEventListeners(gridElementsArr);
-body.appendChild(grid);
+contentContainer.appendChild(grid);
 
 function createGrid(rowCount, columnCount, elementID = null, elementClasses = 'grid') {
     const gridContainer = document.createElement('div');
