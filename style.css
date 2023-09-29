@@ -9,6 +9,7 @@ body {
 
 body {
     display: flex;
+    flex-wrap: wrap;
     width: 100vw;
     height: 100vh;
     align-items: center;
@@ -16,8 +17,8 @@ body {
 }
 
 .grid {
-    width: 41.25rem;
-    height: 41.25rem;
+    min-width: 41.25rem;
+    min-height: 41.25rem;
     border: 1.5rem black solid;
 }
 
@@ -62,4 +63,9 @@ body {
 .slider::-webkit-slider-thumb:hover {
     width: 3rem;
     height: 3rem;
+}
+
+.mode.current:not(button#clear-mode) {
+    background-color: #000000;
+    color: #ffffff;
 }

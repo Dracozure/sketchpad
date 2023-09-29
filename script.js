@@ -1,13 +1,9 @@
 const body = document.querySelector('body');
 const grid = createGrid(16, 16);
-const arr = Array.from(grid.children);
+const gridElementsArr = Array.from(grid.children);
 
-addArrEventListeners(arr);
+addArrEventListeners(gridElementsArr);
 body.appendChild(grid);
-
-function toggleNewMode(newMode) {
-    const currentMode = 0;
-}
 
 function createGrid(rowCount, columnCount, elementID = null, elementClasses = 'grid') {
     const gridContainer = document.createElement('div');
@@ -55,17 +51,6 @@ window.onmouseup = () => {
     mouseDown = 0;
 }
 
-function toggleColor() {
-    mouseDown++;
-    this.style.backgroundColor = getPickedColor();
-}
-
-function toggleColorByHover() {
-    if (mouseDown) {
-        this.style.backgroundColor = getPickedColor();
-    }
-}
-
 function addArrEventListeners(array) {
     array.forEach((element) => {
         element.addEventListener('dragstart', event => {
@@ -107,6 +92,103 @@ function updateGrid() {
 
     addArrEventListeners(arr);
     currentGrid.replaceWith(newGrid);
+}
+
+/* Mode toggle control */
+const startingPenMode = document.getElementById('pen-mode');
+const allModesArr = Array.from(settingsPanel.querySelectorAll('.mode'));
+
+startingPenMode.classList.toggle('current');
+addModeEventListeners(allModesArr);
+
+function getCurrentMode() {
+    return document.querySelector('.mode.current');
+}
+
+function toggleMode() {
+    const currentMode = getCurrentMode();
+
+    if (this.id === 'clear-mode') {
+        clearBoard();
+        return;
+    }
+
+    currentMode.classList.toggle('current');
+    this.classList.toggle('current');
+}
+
+function addModeEventListeners(modeArr) {
+    modeArr.forEach((mode) => {
+        mode.addEventListener('click', toggleMode);
+    });
+}
+
+/* Color toggle control */
+function toggleColor() {
+    const currentMode = getCurrentMode().id;
+
+    mouseDown++;
+
+    switch(currentMode) {
+        case 'pen-mode':
+            colorPenMode(this);
+            break;
+        case 'rainbow-mode':
+            colorRainbowMode(this);
+            break;
+        case 'eraser-mode':
+            eraseElement(this);
+            break;
+    }
+}
+
+function toggleColorByHover() {
+    const currentMode = getCurrentMode().id;
+
+    if (mouseDown) {
+        switch(currentMode) {
+            case 'pen-mode':
+                colorPenMode(this);
+                break;
+            case 'rainbow-mode':
+                colorRainbowMode(this);
+                break;
+            case 'eraser-mode':
+                eraseElement(this);
+                break;
+        }
+    }
+}
+
+function eraseElement(element) {
+    element.style.backgroundColor = 'rgb(255, 255, 255)';
+}
+
+function colorPenMode(element) {
+    element.style.backgroundColor = getPickedColor();
+}
+
+function colorRainbowMode(element) {
+    const randomColor = getRandomColor();
+
+    element.style.backgroundColor = randomColor;
+}
+
+function getRandomColor() {
+    const generateRgbValue = () => {
+        return Math.floor(Math.random() * 255);
+    }
+
+    return `rgb(${generateRgbValue()}, ${generateRgbValue()}, ${generateRgbValue()})`
+}
+
+function clearBoard() {
+    const grid = document.querySelector('.grid');
+    const gridElementsArr = Array.from(grid.children);
+
+    gridElementsArr.forEach((gridElement) => {
+        gridElement.style.backgroundColor = 'rgb(255, 255, 255)';
+    });
 }
 
 
