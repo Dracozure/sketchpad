@@ -38,6 +38,7 @@ function populateGrid(grid, rowCount, columnCount) {
     for (let i = 0; i < gridArea; i++) {
         const gridElement = document.createElement('div');
 
+        gridElement.style.backgroundColor = 'rgb(255, 255, 255)';
         gridElement.setAttribute('id', 'grid-element');
         grid.appendChild(gridElement);
     }
@@ -139,6 +140,9 @@ function toggleColor() {
         case 'eraser-mode':
             eraseElement(this);
             break;
+        case 'shade-mode':
+            colorShaderMode(this);
+            break;
     }
 }
 
@@ -155,6 +159,9 @@ function toggleColorByHover() {
                 break;
             case 'eraser-mode':
                 eraseElement(this);
+                break;
+            case 'shade-mode':
+                colorShaderMode(this);
                 break;
         }
     }
@@ -180,6 +187,20 @@ function getRandomColor() {
     }
 
     return `rgb(${generateRgbValue()}, ${generateRgbValue()}, ${generateRgbValue()})`
+}
+
+function colorShaderMode(element) {
+    element.style.backgroundColor = addShade(element);
+}
+
+function addShade(element) {
+    const currentElementColor = element.style.backgroundColor;
+    const rgbArr = currentElementColor.slice(4, -1).split(',');
+    const shadedRgbArr = rgbArr.map((rgbValue) => {
+        return rgbValue * 0.85;
+    });
+
+    return `rgb(${shadedRgbArr[0]}, ${shadedRgbArr[1]}, ${shadedRgbArr[2]})`;
 }
 
 function clearBoard() {
