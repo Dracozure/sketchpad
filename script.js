@@ -28,6 +28,7 @@ function toggleColor(element) {
         case 'shader':
             break;
         case 'clear':
+            clearBoard();
             break;
     }
 }
@@ -42,7 +43,7 @@ function clearBoard() {
     const gridCells = Array.from(document.querySelector('.grid.box').children);
 
     gridCells.forEach((element) => {
-        element.style.backgroundColor = 'none';
+        element.style.backgroundColor = 'transparent';
     });
 }
 
