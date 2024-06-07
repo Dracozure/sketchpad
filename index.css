@@ -11,8 +11,14 @@ body {
     justify-content: center;
 }
 
-.grid.container {
+.grid {
+    display: grid;
     width: 650px;
     height: 650px;
     border: solid black 10px;
+}
+
+.grid .cell {
+    border-right: solid black 1px;
+    border-bottom: solid black 1px;
 }
