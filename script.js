@@ -1,6 +1,8 @@
-window.onload = createGrid(16);
-
-let editorMode = 'pen';
+window.onload = () => {
+    createGrid(16);
+    const gridCells = Array.from(document.querySelector('.grid.box').children);
+    arrCellsAddEventListeners(gridCells);
+}
 
 let mouseDownStatus = 0;
 window.onmouseup = () => {
@@ -10,9 +12,7 @@ window.onmousedown = () => {
     mouseDownStatus = 1;
 }
 
-const gridCells = Array.from(document.querySelector('.grid.box').children);
-
-arrCellsAddEventListeners(gridCells);
+let editorMode = 'pen';
 
 function toggleColor(element) {
     const currentColor = document.querySelector('input').value;
