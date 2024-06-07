@@ -13,6 +13,7 @@ body {
 
 .container {
     display: flex;
+    column-gap: 30px;
 }
 
 /* Grid Section */
@@ -31,3 +32,13 @@ body {
 
 /* Editor Nav Section */
 
+.editor.box {
+    display: flex;
+    flex-flow: column wrap;
+    row-gap: 20px;
+    justify-content: center;
+}
+
+nav button {
+    padding: 12px;
+}
