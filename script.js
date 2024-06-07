@@ -39,13 +39,16 @@ function toggleColorDrag(element) {
 }
 
 function editorModesAddEventListeners() {
-    const buttons = Array.from(document.querySelectorAll('button'));
+    const buttons = Array.from(document.querySelectorAll('button:not(.clear)'));
+    const clearMode = document.querySelector('button.clear');
 
     buttons.forEach((element) => {
         element.addEventListener('click', event => {
             editorMode = event.currentTarget.getAttribute('class');
         });
     })
+
+    clearMode.addEventListener('click', clearBoard);
 }
 
 function arrCellsAddEventListeners() {
