@@ -3,11 +3,9 @@ window.onload = createGrid(16);
 let editorMode = 'pen';
 
 let mouseDownStatus = 0;
-
 window.onmouseup = () => {
     mouseDownStatus = 0;
 }
-
 window.onmousedown = () => {
     mouseDownStatus = 1;
 }
@@ -17,7 +15,9 @@ const gridCells = Array.from(document.querySelector('.grid.box').children);
 arrCellsAddEventListeners(gridCells);
 
 function toggleColor(element) {
-    element.style.backgroundColor = 'red';
+    const currentColor = document.querySelector('input').value;
+
+    element.style.backgroundColor = currentColor;
 }
 
 function toggleColorDrag(element) {
