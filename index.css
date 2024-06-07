@@ -11,6 +11,12 @@ body {
     justify-content: center;
 }
 
+.container {
+    display: flex;
+}
+
+/* Grid Section */
+
 .grid {
     display: grid;
     width: 650px;
@@ -19,6 +25,9 @@ body {
 }
 
 .grid .cell {
-    border-right: solid black 1px;
-    border-bottom: solid black 1px;
+    border-right: solid #000000 1px;
+    border-bottom: solid #000000 1px;
 }
+
+/* Editor Nav Section */
+

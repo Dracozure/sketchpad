@@ -1,4 +1,6 @@
-const createGrid = (size) => {
+window.onload = createGrid(16);
+
+function createGrid(size) {
     const gridArea = size ** 2;
     const gridContainer = document.querySelector('.container');
     const grid = document.createElement('div')
