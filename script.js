@@ -1,5 +1,7 @@
 window.onload = createGrid(16);
 
+let editorMode = "pen";
+
 function createGrid(size) {
     const gridArea = size ** 2;
     const gridContainer = document.querySelector('.grid.container');
@@ -19,4 +21,12 @@ function createGrid(size) {
     grid.style.setProperty('grid-template-rows', `repeat(${size}, 1fr)`);
 
     gridContainer.appendChild(grid);
+}
+
+function replaceGrid(size) {
+    const grid = document.querySelector('.grid.box');
+
+    grid.remove();
+
+    createGrid(size);
 }
