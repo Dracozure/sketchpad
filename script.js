@@ -16,13 +16,13 @@ const gridCells = Array.from(document.querySelector('.grid.box').children);
 
 arrCellsAddEventListeners(gridCells);
 
-function toggleColor() {
-    this.style.backgroundColor = 'red';
+function toggleColor(element) {
+    element.style.backgroundColor = 'red';
 }
 
-function toggleColorDrag() {
+function toggleColorDrag(element) {
     if (mouseDownStatus) {
-        this.style.backgroundColor = 'red';
+        toggleColor(element);
     }
 }
 
@@ -31,8 +31,12 @@ function arrCellsAddEventListeners(array) {
         element.addEventListener('dragstart', event => {
             event.preventDefault();
         })
-        element.addEventListener('mousedown', toggleColor);
-        element.addEventListener('mouseover', toggleColorDrag);
+        element.addEventListener('mousedown', (event) => {
+            toggleColor(event.currentTarget);
+        });
+        element.addEventListener('mouseover', (event) => {
+            toggleColorDrag(event.currentTarget);
+        });
     });
 }
 
