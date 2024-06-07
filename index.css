@@ -9,6 +9,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100vw;
+    height: 100vh;
 }
 
 .container {
@@ -18,7 +20,18 @@ body {
 
 /* Grid Section */
 
-.grid {
+h1 {
+    text-align: center;
+    font-size: 3rem;
+}
+
+.grid.container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.grid.box {
     display: grid;
     width: 650px;
     height: 650px;

@@ -2,10 +2,10 @@ window.onload = createGrid(16);
 
 function createGrid(size) {
     const gridArea = size ** 2;
-    const gridContainer = document.querySelector('.container');
+    const gridContainer = document.querySelector('.grid.container');
     const grid = document.createElement('div')
     
-    grid.classList.add('grid')
+    grid.classList.add('grid', 'box')
     grid.style.display = 'grid';
 
     for (let i = 0; i < gridArea; i++) {
