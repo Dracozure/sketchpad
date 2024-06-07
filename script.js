@@ -38,6 +38,14 @@ function toggleColorDrag(element) {
     }
 }
 
+function clearBoard() {
+    const gridCells = Array.from(document.querySelector('.grid.box').children);
+
+    gridCells.forEach((element) => {
+        element.style.backgroundColor = 'none';
+    });
+}
+
 function editorModesAddEventListeners() {
     const buttons = Array.from(document.querySelectorAll('button:not(.clear)'));
     const clearMode = document.querySelector('button.clear');
