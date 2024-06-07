@@ -1,7 +1,7 @@
 window.onload = () => {
     createGrid(16);
-    const gridCells = Array.from(document.querySelector('.grid.box').children);
-    arrCellsAddEventListeners(gridCells);
+    arrCellsAddEventListeners();
+    editorModesAddEventListeners();
 }
 
 let mouseDownStatus = 0;
@@ -17,7 +17,19 @@ let editorMode = 'pen';
 function toggleColor(element) {
     const currentColor = document.querySelector('input').value;
 
-    element.style.backgroundColor = currentColor;
+    switch (editorMode) {
+        case 'pen':
+            element.style.backgroundColor = currentColor;
+            break;
+        case 'rainbow':
+            break;
+        case 'eraser':
+            break;
+        case 'shader':
+            break;
+        case 'clear':
+            break;
+    }
 }
 
 function toggleColorDrag(element) {
@@ -26,15 +38,27 @@ function toggleColorDrag(element) {
     }
 }
 
-function arrCellsAddEventListeners(array) {
-    array.forEach((element) => {
+function editorModesAddEventListeners() {
+    const buttons = Array.from(document.querySelectorAll('button'));
+
+    buttons.forEach((element) => {
+        element.addEventListener('click', event => {
+            editorMode = event.currentTarget.getAttribute('class');
+        });
+    })
+}
+
+function arrCellsAddEventListeners() {
+    const gridCells = Array.from(document.querySelector('.grid.box').children);
+
+    gridCells.forEach((element) => {
         element.addEventListener('dragstart', event => {
             event.preventDefault();
         })
-        element.addEventListener('mousedown', (event) => {
+        element.addEventListener('mousedown', event => {
             toggleColor(event.currentTarget);
         });
-        element.addEventListener('mouseover', (event) => {
+        element.addEventListener('mouseover', event => {
             toggleColorDrag(event.currentTarget);
         });
     });
