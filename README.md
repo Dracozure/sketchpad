@@ -1,1 +1,1 @@
-Web-based rock-paper-scissors game for Odin Project
+Sketchpad project for Odin Project
