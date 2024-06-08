@@ -4,11 +4,22 @@
     padding: 0;
 }
 
+@font-face {
+    font-family: 'Wedgie';
+    src: url(./misc/Wedgie\ Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Maison Neue';
+    src: url(./misc/MaisonNeue-Demi.ttf);
+}
+
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-family: 'Wedgie', sans-serif;
     width: 100vw;
     height: 100vh;
 }
@@ -22,7 +33,7 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
 .grid.container {
@@ -33,8 +44,8 @@ h1 {
 
 .grid.box {
     display: grid;
-    width: 650px;
-    height: 650px;
+    width: 750px;
+    height: 750px;
     border: solid #000000 10px;
 }
 
@@ -54,9 +65,10 @@ h1 {
 
 nav button {
     padding: 15px;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     border-radius: 10px;
     border: none;
+    font-family: 'Maison Neue', sans-serif;
 }
 
 .current.mode,
@@ -96,7 +108,6 @@ input.slider {
 .slider.display {
     text-align: center;
     font-size: 1.6rem;
-    margin-top: -10px;
 }
 
 input {
