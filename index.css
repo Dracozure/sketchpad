@@ -22,6 +22,7 @@ body {
     font-family: 'Wedgie', sans-serif;
     width: 100vw;
     height: 100vh;
+    background-color: rgb(141, 141, 150);
 }
 
 .container {
@@ -117,7 +118,7 @@ input {
     width: 80px;
     height: 80px;
     border: none;
-    background-color: #ffffff;
+    background-color: transparent;
     align-self: center;
 }
 
