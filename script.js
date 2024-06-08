@@ -24,6 +24,7 @@ function toggleColor(element) {
             element.style.backgroundColor = currentColor;
             break;
         case 'rainbow':
+            rainbow(element);
             break;
         case 'eraser':
             eraser(element);
@@ -43,12 +44,21 @@ function toggleColorDrag(element) {
     }
 }
 
+function rainbow(element) {
+    let rgbArr = element.style.backgroundColor.slice(4,-1).split(', ');
+    rgbArr = rgbArr.map(() => {
+        return Math.floor(Math.random() * 256);
+    });
+
+    element.style.backgroundColor = `rgb(${rgbArr[0]},${rgbArr[1]},${rgbArr[2]})`;
+}
+
 function eraser(element) {
     element.style.backgroundColor = '#ffffff';
 }
 
 function shader(element) {
-    let rgbArr = element.style.backgroundColor.slice(4,-1).split(',');
+    let rgbArr = element.style.backgroundColor.slice(4,-1).split(', ');
     rgbArr = rgbArr.map(value => value * 0.85);
 
     element.style.backgroundColor = `rgb(${rgbArr[0]},${rgbArr[1]},${rgbArr[2]})`;
