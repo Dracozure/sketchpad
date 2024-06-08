@@ -26,6 +26,7 @@ function toggleColor(element) {
         case 'eraser':
             break;
         case 'shader':
+            shader(element);
             break;
         case 'clear':
             clearBoard();
@@ -39,11 +40,18 @@ function toggleColorDrag(element) {
     }
 }
 
+function shader(element) {
+    let rgbArr = element.style.backgroundColor.slice(4,-1).split(',');
+    rgbArr = rgbArr.map(value => value * 0.85);
+
+    element.style.backgroundColor = `rgb(${rgbArr[0]},${rgbArr[1]},${rgbArr[2]})`;
+}
+
 function clearBoard() {
     const gridCells = Array.from(document.querySelector('.grid.box').children);
 
     gridCells.forEach((element) => {
-        element.style.backgroundColor = 'transparent';
+        element.style.backgroundColor = '#ffffff';
     });
 }
 
@@ -87,6 +95,8 @@ function createGrid(size) {
     for (let i = 0; i < gridArea; i++) {
         gridCell = document.createElement('div');
         gridCell.classList.add('cell');
+
+        gridCell.style.backgroundColor = '#ffffff';
 
         grid.appendChild(gridCell);
     }

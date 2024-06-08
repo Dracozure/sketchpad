@@ -35,7 +35,7 @@ h1 {
     display: grid;
     width: 650px;
     height: 650px;
-    border: solid black 10px;
+    border: solid #000000 10px;
 }
 
 .grid .cell {
