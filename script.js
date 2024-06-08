@@ -26,6 +26,7 @@ function toggleColor(element) {
         case 'rainbow':
             break;
         case 'eraser':
+            eraser(element);
             break;
         case 'shader':
             shader(element);
@@ -40,6 +41,10 @@ function toggleColorDrag(element) {
     if (mouseDownStatus) {
         toggleColor(element);
     }
+}
+
+function eraser(element) {
+    element.style.backgroundColor = '#ffffff';
 }
 
 function shader(element) {
