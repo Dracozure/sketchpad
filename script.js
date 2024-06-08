@@ -5,6 +5,7 @@ window.onload = () => {
     arrCellsAddEventListeners();
     editorModesAddEventListeners();
     mouseCheckExitGrid();
+    toggleCurrentModeDisplay(document.querySelector('.pen'));
 }
 
 let mouseDownStatus = 0;
@@ -17,6 +18,14 @@ window.onmousedown = () => {
 
 let editorMode = 'pen';
 let mouseInsideDiv = false;
+
+function toggleCurrentModeDisplay(newElement,currentElement=null) {
+    if (currentElement) {
+        currentElement.classList.remove('current', 'mode');
+    }
+    
+    newElement.classList.add('current', 'mode');
+}
 
 function toggleColor(element) {
     const currentColor = document.querySelector('input').value;
@@ -97,7 +106,10 @@ function editorModesAddEventListeners() {
 
     buttons.forEach((element) => {
         element.addEventListener('click', event => {
+            const currentMode = document.querySelector('.current.mode');
+
             editorMode = event.currentTarget.getAttribute('class');
+            toggleCurrentModeDisplay(event.target, currentMode);
         });
     })
 

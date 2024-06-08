@@ -58,8 +58,14 @@ nav button {
     border-radius: 10px;
 }
 
+.current.mode,
+button.clear:active {
+    background: #000000;
+    color: #ffffff;
+}
+
 button:hover {
-    background-color: aqua;
+    background-color: darkgray;
 }
 
 input.slider {
@@ -103,7 +109,7 @@ input {
 }
 
 input::-webkit-color-swatch {
-    border: none;
+    border: solid #000000 2px;
     border-radius: 50px;
 }
 
