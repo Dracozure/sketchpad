@@ -108,7 +108,7 @@ function editorModesAddEventListeners() {
         element.addEventListener('click', event => {
             const currentMode = document.querySelector('.current.mode');
 
-            editorMode = event.currentTarget.getAttribute('class');
+            editorMode = event.currentTarget.classList[0];
             toggleCurrentModeDisplay(event.target, currentMode);
         });
     })
