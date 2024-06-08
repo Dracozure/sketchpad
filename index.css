@@ -69,6 +69,7 @@ nav button {
     border-radius: 10px;
     border: none;
     font-family: 'Maison Neue', sans-serif;
+    background-color: #dfd6d6;
 }
 
 .current.mode,
@@ -78,7 +79,7 @@ button.clear:active {
 }
 
 button:hover {
-    background-color: darkgray;
+    background-color: #a9a9a9;
 }
 
 input.slider {
