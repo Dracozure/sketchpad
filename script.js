@@ -1,5 +1,7 @@
 window.onload = () => {
     createGrid(16);
+    displayGridSlider();
+    updateSliderDisplay(16, document.querySelector('.slider.display'));
     arrCellsAddEventListeners();
     editorModesAddEventListeners();
     mouseCheckExitGrid();
@@ -36,6 +38,23 @@ function toggleColor(element) {
             clearBoard();
             break;
     }
+}
+
+function displayGridSlider() {
+    const slider = document.querySelector('input.slider');
+    const sliderDisplay = document.querySelector('.slider.display');
+
+    slider.addEventListener('input', () => {
+        updateSliderDisplay(slider.value, sliderDisplay);
+    });
+
+    slider.addEventListener('change', () => {
+        replaceGrid(slider.value);
+    });
+}
+
+function updateSliderDisplay(gridSize, element) {
+    element.textContent = `${gridSize} x ${gridSize}`;
 }
 
 function toggleColorDrag(element) {
@@ -140,4 +159,8 @@ function replaceGrid(size) {
     grid.remove();
 
     createGrid(size);
+
+    arrCellsAddEventListeners();
+    editorModesAddEventListeners();
+    mouseCheckExitGrid();
 }
