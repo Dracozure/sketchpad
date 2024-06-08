@@ -2,6 +2,7 @@ window.onload = () => {
     createGrid(16);
     arrCellsAddEventListeners();
     editorModesAddEventListeners();
+    mouseCheckExitGrid();
 }
 
 let mouseDownStatus = 0;
@@ -13,6 +14,7 @@ window.onmousedown = () => {
 }
 
 let editorMode = 'pen';
+let mouseInsideDiv = false;
 
 function toggleColor(element) {
     const currentColor = document.querySelector('input').value;
@@ -69,19 +71,29 @@ function editorModesAddEventListeners() {
 }
 
 function arrCellsAddEventListeners() {
-    const gridCells = Array.from(document.querySelector('.grid.box').children);
+    const grid = document.querySelector('.grid.box');
+    const gridCells = Array.from(grid.children);
 
     gridCells.forEach((element) => {
         element.addEventListener('dragstart', event => {
             event.preventDefault();
         })
         element.addEventListener('mousedown', event => {
+            mouseInsideDiv = true;
             toggleColor(event.currentTarget);
         });
         element.addEventListener('mouseover', event => {
-            toggleColorDrag(event.currentTarget);
+            if (mouseInsideDiv) {
+                toggleColorDrag(event.currentTarget);
+            }
         });
     });
+}
+
+function mouseCheckExitGrid() {
+    const grid = document.querySelector('.grid.box');
+
+    grid.addEventListener('mouseleave', () => mouseInsideDiv = false);
 }
 
 function createGrid(size) {
