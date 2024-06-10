@@ -101,8 +101,9 @@ function clearBoard() {
 }
 
 function editorModesAddEventListeners() {
-    const buttons = Array.from(document.querySelectorAll('button:not(.clear)'));
+    const buttons = Array.from(document.querySelectorAll('button:not(.clear):not(.download-image)'));
     const clearMode = document.querySelector('button.clear');
+    const downloadButton = document.querySelector('button.download-image');
 
     buttons.forEach((element) => {
         element.addEventListener('click', event => {
@@ -114,6 +115,7 @@ function editorModesAddEventListeners() {
     })
 
     clearMode.addEventListener('click', clearBoard);
+    downloadButton.addEventListener('click', downloadImage);
 }
 
 function arrCellsAddEventListeners() {
@@ -176,3 +178,25 @@ function replaceGrid(size) {
     editorModesAddEventListeners();
     mouseCheckExitGrid();
 }
+
+function downloadImage() {
+    const gridBox = document.querySelector('.grid.box');
+
+    html2canvas(gridBox).then(
+        function(canvas) {
+            const link = document.createElement('a');
+
+            if (typeof link.download === 'string') {
+
+                link.href = canvas.toDataURL();
+                link.download = 'file-name.png';
+
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                window.open(canvas.toDataURL());
+            }
+        });
+}
+
