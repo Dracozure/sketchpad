@@ -189,7 +189,7 @@ function downloadImage() {
             if (typeof link.download === 'string') {
 
                 link.href = canvas.toDataURL();
-                link.download = 'file-name.png';
+                link.download = 'img.png';
 
                 document.body.appendChild(link);
                 link.click();
